@@ -15,4 +15,4 @@ def iou(box_a, box_b):
 
     union = area_a + area_b - intersection
 
-    return intersection / union
+    return 0.0 if not union else float(intersection / union)
