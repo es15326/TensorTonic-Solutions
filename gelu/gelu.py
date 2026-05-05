@@ -12,7 +12,7 @@ def gelu(x):
 
     erf_vec = np.vectorize(math.erf)
 
-    gelu = 0.5 * x * (1 + erf_vec(x / np.sqrt(2)))
+    gelu = 0.5 * x * (1 + erf_vec(x / math.sqrt(2)))
 
     return gelu
     
