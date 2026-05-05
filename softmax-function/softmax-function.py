@@ -10,11 +10,9 @@ def softmax(x):
     x = np.array(x)
 
     if x.ndim == 1:
-        x = x[np.newaxis, ]
+        x = x - np.max(x)
+        return np.exp(x) / np.sum(np.exp(x))
 
-    max_ = np.max(x, axis=1, keepdims=True)
-    x = x - max_
+    x = x - np.max(x, axis=1, keepdims=True)
 
-    soft_max = np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
-
-    return soft_max.reshape(-1) if soft_max.shape[0] == 1 else soft_max
+    return np.exp(x) / np.sum(np.exp(x), axis=1, keepdims=True)
