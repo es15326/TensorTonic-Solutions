@@ -6,6 +6,7 @@ def swish(x):
     """
     # Write code here
     x = np.array(x)
+    x = np.clip(x, -50, 50)
 
     s = 1 / (1 + np.exp(-x))
     swish = x * s
