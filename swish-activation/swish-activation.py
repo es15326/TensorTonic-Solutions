@@ -7,4 +7,7 @@ def swish(x):
     # Write code here
     x = np.array(x)
 
-    return x * (1 / (1 + np.exp(-x)))
+    s = 1 / (1 + np.exp(-x))
+    swish = x * s
+
+    return swish
