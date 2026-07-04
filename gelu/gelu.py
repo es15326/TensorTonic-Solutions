@@ -9,10 +9,8 @@ def gelu(x):
     """
     # Write code here
     x = np.array(x)
+    error = np.vectorize(math.erf)(x / np.sqrt(2))
 
-    erf_vec = np.vectorize(math.erf)
-
-    gelu = 0.5 * x * (1 + erf_vec(x / math.sqrt(2)))
+    gelu = 0.5 * x * (1 + error)
 
     return gelu
-    
