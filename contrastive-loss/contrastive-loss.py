@@ -10,15 +10,11 @@ def contrastive_loss(a, b, y, margin=1.0, reduction="mean") -> float:
     """
     # Write code here
     a, b, y = np.array(a), np.array(b), np.array(y)
+    d = np.linalg.norm(a - b, axis=1) if a.ndim > 1 else np.linalg.norm(a - b)
+    loss = y * d ** 2 + (1 - y) * np.maximum(0, margin - d) ** 2
 
-    if a.ndim == 1:
-        a = a[None, :]
-        b = b[None, :]
-
-    d = np.linalg.norm(a - b, axis=1)
-    loss = y * np.square(d) + (1 - y) * np.square(np.maximum(0, margin - d))
-
-    if reduction == 'mean':
-        return np.mean(loss)
-    elif reduction == 'sum':
-        return np.sum(loss)
+    if reduction == "mean":
+        return loss.mean()
+    elif reduction == "sum":
+        return loss.sum()
+    
